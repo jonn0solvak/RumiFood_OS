@@ -14,10 +14,10 @@ RumiFood OS is an open source project of ration software for ruminants.   ///  R
 - [ ] ajout de la referance dans le dossier Target
 - [ ] identification des partir de qt a utilisé
 
-- [ ] create data
-- [ ] Trouver la forme des donnée INRAe
+- [x] create data
+- [x] Trouver la forme des donnée INRAe
 - [ ] Trouver la forme des donnée Monde (NRC/AFRC pour USA, CSIRO pour Australie, NRCM NRSe pour ruminants)
-- [ ] Identifier le nessesaire en SQLite
+- [x] Identifier le nessesaire en SQLite
 - [ ] Integration des donnée en natif
       
 - [ ] creat docs
