@@ -28,8 +28,12 @@ def obtenir_donnees_aliment(nom_aliment, type_aliment):
     conn.close()
     
     if resultat:
-        return {"ufl": resultat[0], "pdi": resultat[1], "ms": resultat[2]}
+        return resultat
     return None
 
 if __name__ == "__main__":
-    obtenir_donnees_aliment("FV0020","fourrage")
+    
+    alim1 = obtenir_donnees_aliment("FV0020","fourrages")
+    alim2 = obtenir_donnees_aliment("FE1250","fourrages")
+    alim3 = obtenir_donnees_aliment("CN0190","concentres")
+    print(alim1 , alim2 , alim3)
