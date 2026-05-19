@@ -1,0 +1,9 @@
+
+nb : trouvé une solution pour le calcule des Ci, PDI 
+    calcul du CI incomplé
+    calcul de PDI incomplé
+
+pour la prochaine fois : 
+
+    Trouver ajouté les besoin Mineraux et protéine avant 24/05/26
+    Trouver une facon de calculé avec des variable interdepandante

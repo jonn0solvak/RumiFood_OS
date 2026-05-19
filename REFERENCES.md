@@ -9,8 +9,9 @@ lien: https://inration.fr/index.php
 Nozière, P., Sauvant, D., & Delaby, L. (Dir.). (2018). Alimentation des ruminants (4ᵉ éd.). Éditions Quae, 728 p. ISBN : 978-2-7592-2867-6 Lien: https://www.quae.com/produit/1523/9782759228683/alimentation-des-ruminants 
 
 Vache laitière :
+Capacité d'ingestion : 289p
 besoin energie : 279p
-besoin proteine: 281
+besoin proteine: 281p
 
 
 
