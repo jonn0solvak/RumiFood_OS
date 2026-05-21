@@ -1,35 +1,49 @@
 import sqlite3
-
-# recuperé le nom des tableau
-with sqlite3.connect('data\INRA_2018.db') as conn:
-    cursor = conn.cursor()
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = [table[0] for table in cursor.fetchall()]
-    print(tables)
-
+from class_aliment import *
 
 def obtenir_donnees_aliment(nom_aliment, type_aliment):
+
+    #On récupère le nom des table de la DB
+    with sqlite3.connect("data/INRA_2018.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = [table[0] for table in cursor.fetchall()]
+        print(tables)
+
+    #on selectionne que class utilisé
+    if type_aliment == "fourrages":
+        class_cible = fourrage_vl
+        element_class = [champ.name for champ in fields(fourrage_vl)]
+        list_colonnes_sql = ", ".join(element_class)
+    else:
+        class_cible = concentre_vl
+        element_class = [champ.name for champ in fields(concentre_vl)]
+        list_colonnes_sql = ", ".join(element_class)
+    
+
     """
-    Récupère les données soit dans la table 'fourrages', soit 'concentres'.
+    Récupèration des données dans table.
     type_aliment doit être 'fourrages' ou 'concentres'
     """
-    # Sécurité : On vérifie que la table demandée est valide 
-    # (car on ne peut pas utiliser le '?' de SQL pour un nom de table)
+    # On vérifie que la table demandée est valide 
     if type_aliment not in tables:
         raise ValueError("Type d'aliment invalide")
 
+    #Connection et récuperation des infromation dans la DB
     conn = sqlite3.connect("data/INRA_2018.db")
     cursor = conn.cursor()
     
     # Construction sécurisée de la requête
-    requete = f"SELECT ufl, pdi, ms FROM {type_aliment} WHERE Code_INRA = ?"
+    requete = f"SELECT {list_colonnes_sql}   FROM {type_aliment} WHERE Code_INRA = ?"
     cursor.execute(requete, (nom_aliment,))
     resultat = cursor.fetchone()
     conn.close()
     
     if resultat:
-        return resultat
+        return class_cible(*resultat)
     return None
+
+
 
 if __name__ == "__main__":
     
@@ -37,3 +51,6 @@ if __name__ == "__main__":
     alim2 = obtenir_donnees_aliment("FE1250","fourrages")
     alim3 = obtenir_donnees_aliment("CN0190","concentres")
     print(alim1 , alim2 , alim3)
+    print(alim3.bvec)
+
+
