@@ -42,18 +42,18 @@ RumiFood OS is an open source project of ration software for ruminants.   ///  R
 - [ ] Kg MS
 - [ ] Prix / T
 
-- [ ] UFL
-- [ ] MAT
-- [ ] PDI:
-- [ ] PDIA
+- [x] UFL
+- [x] MAT
+- [x] PDI:
+- [x] PDIA
       
-- [ ] UEL
-- [ ] NDF
-- [ ] BRE/BEF????
-- [ ] CB
+- [x] UEL
+- [x] NDF
+- [x] BPR
+- [x] CB
 
-- [ ] Ca abs
-- [ ] P abs
+- [x] Ca abs
+- [x] P abs
 - [ ] Mg
 - [ ] Na
 - [ ] S
@@ -63,15 +63,15 @@ RumiFood OS is an open source project of ration software for ruminants.   ///  R
 
       
 - [ ] Crée des catégorie d'aliment:
-- [ ] Fourrage
-- [ ] Concentré
+- [x] Fourrage
+- [x] Concentré
 - [ ] Ensilage
 - [ ] Foin
 - [ ] Corecteur Energie/ Proteine
 - [ ] Correcteur energie
 - [ ] Corrcteur azote
 - [ ] AMV
-- [ ] Cereale
+- [x] Cereale
 - [ ] Autre
 
 
