@@ -13,3 +13,4 @@ import sqlite3
 #
 #print(150/30)
 
+print(mh.log10(25))
