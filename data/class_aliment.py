@@ -24,8 +24,15 @@ class vl(aliment):
     ufl:float
 
 @dataclass
-class fourrage_vl(vl):
+class fourrage_bl(vl):
     dcb:float
     dadf:float
 @dataclass
-class concentre_vl(vl): bvec:float
+class concentre_bl(vl): bvec:float
+
+@dataclass
+class fourrage_bv(vl):
+    dcb:float
+    dadf:float
+@dataclass
+class concentre_bv(vl): bvec:float
