@@ -12,12 +12,12 @@ def obtenir_donnees_aliment(nom_aliment, type_aliment):
 
     #on selectionne que class utilisé
     if type_aliment == "fourrages":
-        class_cible = fourrage_vl
-        element_class = [champ.name for champ in fields(fourrage_vl)]
+        class_cible = fourrage_bl
+        element_class = [champ.name for champ in fields(fourrage_bl)]
         list_colonnes_sql = ", ".join(element_class)
     else:
-        class_cible = concentre_vl
-        element_class = [champ.name for champ in fields(concentre_vl)]
+        class_cible = concentre_bl
+        element_class = [champ.name for champ in fields(concentre_bl)]
         list_colonnes_sql = ", ".join(element_class)
     
 
@@ -50,6 +50,8 @@ if __name__ == "__main__":
     alim1 = obtenir_donnees_aliment("FV0020","fourrages")
     alim2 = obtenir_donnees_aliment("FE1250","fourrages")
     alim3 = obtenir_donnees_aliment("CN0190","concentres")
+
+    
     print(alim1 , alim2 , alim3)
     print(alim3.bvec)
 
