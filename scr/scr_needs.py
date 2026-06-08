@@ -20,9 +20,9 @@ LW_calf = 35 #kg
 
 dmi = 18 # kg MS/j
 
-milk_production_month =5500 #l/year/Darry Cow
+milk_production_year =5500 #l/year/Darry Cow
 lactation_day_year = 305 
-milk_production_day = milk_production_month/ lactation_day_year
+milk_production_day = milk_production_year/ lactation_day_year
 tp = 32
 tb = 38
 

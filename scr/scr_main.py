@@ -1,6 +1,4 @@
-import numpy as np
-import math as mh
-import sqlite3
+from scr_needs import 
 
 
 print(5**3)
