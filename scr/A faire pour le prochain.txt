@@ -1,7 +1,5 @@
 
-nb : trouvé une solution pour le calcule des Ci, PDI 
-    calcul du CI incomplé
-    calcul de PDI incomplé
+nb : Note d'etat corporel (voir l'ipacte sur resultat)
 
 pour la prochaine fois : 
 
