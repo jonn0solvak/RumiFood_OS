@@ -4,7 +4,7 @@ from class_aliment import *
 def obtenir_donnees_aliment(nom_aliment, type_aliment):
 
     #On récupère le nom des table de la DB
-    with sqlite3.connect("data/INRA_2018.db") as conn:
+    with sqlite3.connect("data/Data.db") as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         tables = [table[0] for table in cursor.fetchall()]
