@@ -17,22 +17,22 @@ class aliment:
     em:float
 
 @dataclass
-class vache_viande(aliment):
+class bv(aliment):
     ufv:float
 @dataclass
-class vl(aliment):
+class bl(aliment):
     ufl:float
 
 @dataclass
-class fourrage_bl(vl):
+class fourrage_bl(bl):
     dcb:float
     dadf:float
 @dataclass
-class concentre_bl(vl): bvec:float
+class concentre_bl(bl): bvec:float
 
 @dataclass
-class fourrage_bv(vl):
+class fourrage_bv(bv):
     dcb:float
     dadf:float
 @dataclass
-class concentre_bv(vl): bvec:float
+class concentre_bv(bv): bvec:float

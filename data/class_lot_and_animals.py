@@ -9,9 +9,13 @@ class lot:
     weeks_gestation:int
     body_condition:float
     live_weight:int
+    age_first_calving:int
     turnover:float
     LW_calf:float
     milk_production_year:int
     lactation_day_year:float
     tp:float
     tb:float
+
+#@dataclass
+#class lot_darry_cow(lot):
