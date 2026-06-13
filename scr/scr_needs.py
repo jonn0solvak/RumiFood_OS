@@ -2,12 +2,6 @@ import sqlite3
 import math as mh
 # NB: mh.log = ln
 
-### Calcule de des besoin: 
-##  race
-##  Productivité lait(l/VL/an)  
-##  Stade de lactation
-##  nombre
-
 ### Donnée
 body_condition = 2.5
 live_weight = 650 #kg
@@ -17,17 +11,33 @@ gestation_week = 10 # months
 turnover= 0.3 # Pourcentage
 nb_darry_cow = 100 
 LW_calf = 35 #kg
-
 dmi = 18 # kg MS/j
-
 milk_production_year =5500 #l/year/Darry Cow
 lactation_day_year = 305 
 milk_production_day = milk_production_year/ lactation_day_year
 tp = 32
 tb = 38
-
 # calculde la production lait potentiel
 potential_milk_prod = 30.3 #data base
+
+### Récupéré l'index d'activité dans doc
+activity_index = 1.1
+
+#### besoin UFL 
+def ufl_need (live_weight, activity_index, milk_production_day, tb, tp, LW_calf, gestation_week, batch_age ):
+    maintenance_ufl_need = 0.0536 * (live_weight**0.75) * activity_index
+    production_ufl_need = milk_production_day *(0.42 + (0.0053 * (tb - 40)) +(0.0032 * (tp - 31))) 
+    if gestation_week != 0:
+        gestation_ufl_need = 0.000695 * LW_calf * mh.exp(0.116 * gestation_week)
+    else: gestation_ufl_need = 0
+
+    if batch_age == None or batch_age > 40:
+        gain_ufl_need = 0
+    else: gain_ufl_need = 3.14 - (0.077 * batch_age)
+
+    ufl_need = maintenance_ufl_need + production_ufl_need + gestation_ufl_need + gain_ufl_need
+    return ufl_need
+
 
 
 # calucle incice CI
@@ -46,35 +56,34 @@ intake_capacity =   ((14.25 +
                      #* ind_pdi
                      )
 
+#### besoin PDI 
+eff_pdi = 0.67 ### a précisé
+
+def pdi_need (live_weight, eff_pdi, tp, milk_production_day, LW_calf, gestation_week, batch_age,MSI=None,MOND=None):
+
+    if MSI or MOND ==None :
+         unproductive_pdi_need = ( (0.312 * live_weight) + 
+                          ((0.2*live_weight**0.6)/eff_pdi) )
+    else :
+         unproductive_pdi_need = ( (0.312 * live_weight) + 
+                          ((0.2*live_weight**0.6)/eff_pdi)+
+                          (MSI * [5 * (0.57 + 0.0074 * MOND)]/eff_pdi) )
+    
+    productive_pdi_need = (tp * milk_production_day)/eff_pdi
+    
+    if gestation_week != 0:
+        gestation_pdi_need = (0.0448 * LW_calf * mh.exp(0.111 * gestation_week) /eff_pdi) 
+    else: gestation_pdi_need = 0
+
+    if batch_age == None or batch_age > 40:
+            gain_ufl_need = 0
+    else: gain_ufl_need = (270 - 6.66 * batch_age) /eff_pdi
+
+    pdi_need = unproductive_pdi_need + productive_pdi_need + gestation_pdi_need + gain_ufl_need
+    return pdi_need
 
 
-#### besoin PDI (A APPROFONDIR)
-eff_proteique = 1 ### a précisé
-
-unproductive_pdi_need = (0.312 * live_weight) + ((0.2*live_weight**0.6)/eff_proteique)  ## + besPDI_PEF = MSI × [5 × (0,57 + 0,0074 × MOND)]/EffPDI
-productive_pdi_need = (tp * milk_production_day)/eff_proteique
-if gestation_week != 0:
-    gestation_pdi_need = (0.0448 * LW_calf * mh.exp(0.111 * gestation_week)#/EffPDI
-    ) 
-else: gestation_pdi_need = 0
-
-pdi_need = unproductive_pdi_need + productive_pdi_need + gestation_pdi_need 
-
-
-#### besoin UFL 
-
-### Récupéré l'index d'activité dans doc
-activity_index = 1.1
-maintenance_ufl_need = 0.0536 * (live_weight**0.75) * activity_index
-production_ufl_need = milk_production_day *(0.42 + (0.0053 * (tb - 40)) +(0.0032 * (tp - 31))) 
-if gestation_week != 0:
-    gestation_ufl_need = 0.000695 * LW_calf * mh.exp(0.116 * gestation_week)
-else: gestation_ufl_need = 0
-if batch_age == None or batch_age > 40:
-    gain_ufl_need = 0
-else: gain_ufl_need = 3.14 - (0.077 * batch_age)
-
-ufl_need = maintenance_ufl_need + production_ufl_need + gestation_ufl_need + gain_ufl_need
+##### quand on a une ration equilibré energie et prot, on peu passé au mineraux en conaisant la MSI 
 
 #### Besoin mineraux
 # 

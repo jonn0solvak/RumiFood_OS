@@ -42,3 +42,4 @@ def potencial_tp (tp_mean, lactation_week):
           (0.9 + (0.60 * mh.exp(-0.78 * lactation_week))+ (0.006 * lactation_week)) 
         )
     return tp
+
