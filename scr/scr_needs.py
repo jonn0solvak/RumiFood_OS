@@ -5,9 +5,9 @@ import math as mh
 ### Donnée
 body_condition = 2.5
 live_weight = 650 #kg
-batch_age = None # months
-lactation_week = 22 # months
-gestation_week = 10 # months
+batch_age = 18 # months
+lactation_week = 12 # week
+gestation_week = 1 # week
 turnover= 0.3 # Pourcentage
 nb_darry_cow = 100 
 LW_calf = 35 #kg
@@ -92,7 +92,7 @@ def intake_capacity (lactation_week, gestation_week, total_pdi= None, total_ufl 
 ##### quand on a une ration equilibré energie et prot, on peu passé au mineraux en conaisant la MSI 
 
 ### Besoin mineraux
- 
+ #ERREUR AVEC GEST WEEK A 0
 def minerals_need (dmi, live_weight, milk_production_day, gestation_week, batch_age):
     ca_abs_need = ( (0.663 * dmi) +
                  (0.008 * live_weight) + 
@@ -100,7 +100,7 @@ def minerals_need (dmi, live_weight, milk_production_day, gestation_week, batch_
                  (23.5 / (1 + mh.exp(19.1 - 5.46 * mh.log(gestation_week)))) +
                  (-0.189 * batch_age + 8.03)
                  )
-    p_abs_need =( (0.83 * msi) + 
+    p_abs_need =( (0.83 * dmi) + 
                (0.002 * live_weight) + 
                (0.9 * milk_production_day ) +
                (7.38 / (1 + mh.exp(19.1 - 5.46 * mh.log(gestation_week)))) +
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     ufl = ufl_need(live_weight,activity_index,milk_production_day,tb,tp,LW_calf,gestation_week,batch_age)
     pdi = pdi_need(live_weight,eff_pdi,tp, milk_production_day, LW_calf, gestation_week, batch_age)
     ic = intake_capacity(lactation_week,gestation_week,pdi,ufl)
+    minerals = minerals_need(dmi,live_weight, milk_production_day,gestation_week, batch_age)
 
 
-
-    print(ufl, pdi, ic)
+    print(ufl, pdi, ic,minerals)

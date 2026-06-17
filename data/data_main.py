@@ -1,6 +1,8 @@
 import sqlite3
 from class_aliment import *
 
+
+
 def obtenir_donnees_aliment(nom_aliment, type_aliment):
 
     #On récupère le nom des table de la DB
@@ -30,11 +32,11 @@ def obtenir_donnees_aliment(nom_aliment, type_aliment):
         raise ValueError("Type d'aliment invalide")
 
     #Connection et récuperation des infromation dans la DB
-    conn = sqlite3.connect("data/INRA_2018.db")
+    conn = sqlite3.connect("data/Data.db")
     cursor = conn.cursor()
     
     # Construction sécurisée de la requête
-    requete = f"SELECT {list_colonnes_sql}   FROM {type_aliment} WHERE Code_INRA = ?"
+    requete = f"SELECT {list_colonnes_sql}   FROM {type_aliment} WHERE ID_code = ?"
     cursor.execute(requete, (nom_aliment,))
     resultat = cursor.fetchone()
     conn.close()
@@ -43,6 +45,7 @@ def obtenir_donnees_aliment(nom_aliment, type_aliment):
         return class_cible(*resultat)
     return None
 
+# def liste_stock(nom_aliment, type_aliment):
 
 
 if __name__ == "__main__":
@@ -52,7 +55,6 @@ if __name__ == "__main__":
     alim3 = obtenir_donnees_aliment("CN0190","concentres")
 
     
-    print(alim1 , alim2 , alim3)
-    print(alim3.bvec)
+    print(alim1.pdi,alim1.ee, alim2.pdi)
 
 
