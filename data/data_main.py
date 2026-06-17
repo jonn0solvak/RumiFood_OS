@@ -45,8 +45,20 @@ def obtenir_donnees_aliment(nom_aliment, type_aliment):
         return class_cible(*resultat)
     return None
 
-# def liste_stock(nom_aliment, type_aliment):
+# def liste_stock(nom_aliment, type_aliment): 
 
+# PLUTOT DEF ALIMENT : EXTRERE LES ELEMENT UTILISER EN CALULE RATION + QUANTITE STOQUER
+
+#Connection et récuperation des infromation dans la DB
+conn = sqlite3.connect("data/Data.db")
+cursor = conn.cursor()
+    
+# Construction sécurisée de la requête 
+requete = f"SELECT ID_code, Quantite FROM Stock"
+cursor.execute(requete)
+resultat = cursor.fetchall()
+conn.close()
+print(resultat)
 
 if __name__ == "__main__":
     
