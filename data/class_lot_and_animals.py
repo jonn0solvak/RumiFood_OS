@@ -17,5 +17,8 @@ class lot:
     tp:float
     tb:float
 
-#@dataclass
-#class lot_darry_cow(lot):
+@dataclass
+class stock:
+    ID_stock:int
+    ID_code:str
+    Quantite:float
