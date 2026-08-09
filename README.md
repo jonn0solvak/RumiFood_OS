@@ -1,5 +1,6 @@
 # RumiFood_OS
-RumiFood OS is an open source project of ration software for ruminants.   ///  RumiFood OS est un projet open source de logiciel de ration pour ruminant.
+RumiFood OS is an open source project of ration software for ruminants.   ///  RumiFood OS est un projet open source de logiciel de ration pour ruminant. 
+PS: je suis juste un étudiant qui est dans le domaine agricole (pas informatique) qui veut réaliser un "petit" projet qui lui plaît :)
 
 **Pre-Roadmap :**
 
