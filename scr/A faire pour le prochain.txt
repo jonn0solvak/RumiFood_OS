@@ -1,6 +1,0 @@
-
-nb : Note d'etat corporel (voir l'ipacte sur resultat)
-
-pour la prochaine fois : 
-
-    Trouver une facon de calculé avec des variable interdepandante
