@@ -23,5 +23,6 @@ class CalculationContext:
 
     reference_system: str = "inra2018"
 
+
 if __name__ == "__main__":
-    print(CalculationContext("cow","b","c",1,2,"d",3,4,5,6,7,))
+    
