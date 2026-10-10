@@ -15,7 +15,7 @@ lactation_week = 12
 gestation_week = 6
 # calculde la production lait potentiel
 
-def potential_milk_prod_primipare (pic_milk, lactation_week, gestation_week):
+def potential_milk_prod_primipare (pic_milk:float, lactation_week:int, gestation_week:int)->float:
     potential_milk_prod = ( pic_milk *
         ( -0.55 + (1.66 * mh.exp(-0.0065* lactation_week)) -
          (0.72 * mh.exp(-0.44 * lactation_week))-
@@ -23,7 +23,7 @@ def potential_milk_prod_primipare (pic_milk, lactation_week, gestation_week):
          )
     return (potential_milk_prod)
 
-def potential_milk_prod_multipare (pic_milk, lactation_week, gestation_week):
+def potential_milk_prod_multipare (pic_milk:float, lactation_week:int, gestation_week:int)->float:
     potential_milk_prod = ( pic_milk *
         ( -0.83 + (1.92 * mh.exp(-0.0085* lactation_week)) -
          (0.74 * mh.exp(-0.88 * lactation_week))-
@@ -31,13 +31,13 @@ def potential_milk_prod_multipare (pic_milk, lactation_week, gestation_week):
          )
     return potential_milk_prod
 
-def potencial_tb (tb_mean, lactation_week):
+def potencial_tb (tb_mean:float, lactation_week:float)->float:
     tb = ( tb_mean * 
           (0.87 + (0.52 * mh.exp(-0.62 * lactation_week))+ (0.005 * lactation_week)) 
         )
     return tb
 
-def potencial_tp (tp_mean, lactation_week):
+def potencial_tp (tp_mean:float, lactation_week:float)->float:
     tp = ( tp_mean * 
           (0.9 + (0.60 * mh.exp(-0.78 * lactation_week))+ (0.006 * lactation_week)) 
         )

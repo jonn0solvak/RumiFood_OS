@@ -5,16 +5,16 @@ import math as mh
 
 
 #### besoin UFL 
-def ufl_need (live_weight, activity_index, milk_production_day, tb, tp, LW_calf, gestation_week, batch_age ):
+def ufl_need (live_weight, activity_index, milk_production_day, tb, tp, LW_calf, gestation_week, age ):
     maintenance_ufl_need = 0.0536 * (live_weight**0.75) * activity_index
     production_ufl_need = milk_production_day *(0.42 + (0.0053 * (tb - 40)) +(0.0032 * (tp - 31))) 
     if gestation_week != 0:
         gestation_ufl_need = 0.000695 * LW_calf * mh.exp(0.116 * gestation_week)
     else: gestation_ufl_need = 0
 
-    if batch_age == None or batch_age > 40:
+    if age == None or age > 40:
         gain_ufl_need = 0
-    else: gain_ufl_need = 3.14 - (0.077 * batch_age)
+    else: gain_ufl_need = 3.14 - (0.077 * age)
 
     ufl_need = maintenance_ufl_need + production_ufl_need + gestation_ufl_need + gain_ufl_need
     return ufl_need
@@ -24,7 +24,7 @@ def ufl_need (live_weight, activity_index, milk_production_day, tb, tp, LW_calf,
 #### besoin PDI 
 eff_pdi = 0.67 ### a précisé
 
-def pdi_need (live_weight, eff_pdi, tp, milk_production_day, LW_calf, gestation_week, batch_age,dmi=None,MOND=None):
+def pdi_need (live_weight, eff_pdi, tp, milk_production_day, LW_calf, gestation_week, age,dmi=None,MOND=None):
 
     if eff_pdi <= 0:
         raise ValueError("eff_pdi doit être strictement positif.")
@@ -40,9 +40,9 @@ def pdi_need (live_weight, eff_pdi, tp, milk_production_day, LW_calf, gestation_
         gestation_pdi_need = (0.0448 * LW_calf * mh.exp(0.111 * gestation_week) /eff_pdi) 
     else: gestation_pdi_need = 0
 
-    if batch_age == None or batch_age > 40:
+    if age == None or age > 40:
             gain_ufl_need = 0
-    else: gain_ufl_need = (270 - 6.66 * batch_age) /eff_pdi
+    else: gain_ufl_need = (270 - 6.66 * age) /eff_pdi
 
     pdi_need = unproductive_pdi_need + productive_pdi_need + gestation_pdi_need + gain_ufl_need
     return pdi_need
@@ -76,20 +76,20 @@ def intake_capacity (live_weight,potential_milk_prod,body_condition,lactation_we
 
 ### Besoin mineraux
 
-def ca_need (dmi, live_weight, milk_production_day, gestation_week, batch_age):
+def ca_need (dmi, live_weight, milk_production_day, gestation_week, age):
     ca_maintenance = 0.663 * dmi + 0.008 * live_weight
     ca_lactation = 1.25 * milk_production_day
-    ca_grow = -0.189 * batch_age + 8.03
+    ca_grow = -0.189 * age + 8.03
     ca_abs_need = ca_maintenance + ca_lactation + ca_grow
      
     if gestation_week >=25:
         ca_abs_need = ca_abs_need + (23.5 / (1 + mh.exp(18.8 - 5.03 * mh.log(gestation_week))))
     return ca_abs_need 
 
-def p_need (dmi, live_weight, milk_production_day, gestation_week, batch_age):
+def p_need (dmi, live_weight, milk_production_day, gestation_week, age):
     p_maintenance = 0.83*dmi+0.002*live_weight
     p_lactation = 0.90 * milk_production_day
-    p_grow = -0.112 * batch_age + 4.76
+    p_grow = -0.112 * age + 4.76
     p_abs_need =p_maintenance + p_lactation + p_grow
     if gestation_week >=25:
         p_abs_need = p_abs_need + (7.38 / (1 + mh.exp(19.1 - 5.46 * mh.log(gestation_week))))

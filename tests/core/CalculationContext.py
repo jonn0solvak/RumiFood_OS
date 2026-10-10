@@ -4,7 +4,7 @@ import os
 # Remonte jusqu'à la racine ton_projet/
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
-from scr import *
+from scr.Rumifood.systems.INRA_2018.requirements.bovine.Dairy.scr_needs import *
 
 body_condition = 2.5
 live_weight = 650 #kg
@@ -28,7 +28,7 @@ potential_milk_prod = 30.3 #data base
 
 ### Récupéré l'index d'activité dans doc
 activity_index = 1.1
-print(intake_capacity(600,30,2.5,5,2))
+print(intake_capacity(live_weight,potential_milk_prod,body_condition,lactation_week,gestation_week))
 ufl = ufl_need(live_weight,activity_index,milk_production_day,tb,tp,LW_calf,gestation_week,batch_age)
 pdi = pdi_need(live_weight,eff_pdi,tp, milk_production_day, LW_calf, gestation_week, batch_age)
 ic = intake_capacity(live_weight,potential_milk_prod,body_condition,lactation_week,gestation_week,pdi,ufl)
